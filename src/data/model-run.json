@@ -1,0 +1,415 @@
+{
+  "schemaVersion": 1,
+  "run": {
+    "name": "Regresión logística explicable",
+    "engine": "Python + pandas + NumPy",
+    "source": "data/transacciones_procesadas.csv",
+    "seed": 20260927,
+    "note": "Corrida didáctica sobre datos sintéticos. No representa una validación bancaria real."
+  },
+  "dataset": {
+    "rawRows": 10438,
+    "processedRows": 10000,
+    "columns": 19,
+    "target": "fraud_label",
+    "fraudRate": 0.0424,
+    "averageAmount": 319272.78,
+    "splits": {
+      "train": 7000,
+      "validation": 1500,
+      "test": 1500
+    }
+  },
+  "features": {
+    "selected": 16,
+    "specs": [
+      {
+        "name": "log_importe",
+        "source": "amount",
+        "transform": "log1p",
+        "label": "Importe de la transacción"
+      },
+      {
+        "name": "importe_vs_promedio",
+        "source": "amountVsAverage",
+        "transform": "identity",
+        "label": "Importe frente al promedio"
+      },
+      {
+        "name": "transacciones_24h",
+        "source": "transactionCount24h",
+        "transform": "identity",
+        "label": "Velocidad en 24 horas"
+      },
+      {
+        "name": "log_antiguedad",
+        "source": "accountAgeDays",
+        "transform": "log1p",
+        "label": "Antigüedad de la cuenta"
+      },
+      {
+        "name": "intentos_fallidos",
+        "source": "failedAttempts",
+        "transform": "identity",
+        "label": "Intentos fallidos"
+      },
+      {
+        "name": "log_distancia",
+        "source": "distanceKm",
+        "transform": "log1p",
+        "label": "Distancia desde la última compra"
+      },
+      {
+        "name": "horario_nocturno",
+        "source": "isNight",
+        "transform": "binary",
+        "label": "Operación nocturna"
+      },
+      {
+        "name": "dispositivo_nuevo",
+        "source": "deviceNew",
+        "transform": "binary",
+        "label": "Dispositivo no reconocido"
+      },
+      {
+        "name": "tarjeta_no_presente",
+        "source": "cardNotPresent",
+        "transform": "binary",
+        "label": "Tarjeta no presente"
+      },
+      {
+        "name": "pais_riesgo_medio",
+        "source": "countryRisk",
+        "transform": "equals:Medio",
+        "label": "País de riesgo medio"
+      },
+      {
+        "name": "pais_riesgo_alto",
+        "source": "countryRisk",
+        "transform": "equals:Alto",
+        "label": "País de riesgo alto"
+      },
+      {
+        "name": "comercio_tecnologia",
+        "source": "merchant",
+        "transform": "equals:Tecnología",
+        "label": "Comercio de tecnología"
+      },
+      {
+        "name": "comercio_viajes",
+        "source": "merchant",
+        "transform": "equals:Viajes",
+        "label": "Comercio de viajes"
+      },
+      {
+        "name": "comercio_joyeria",
+        "source": "merchant",
+        "transform": "equals:Joyería",
+        "label": "Comercio de joyería"
+      },
+      {
+        "name": "pago_virtual",
+        "source": "paymentMethod",
+        "transform": "equals:Tarjeta virtual",
+        "label": "Pago con tarjeta virtual"
+      },
+      {
+        "name": "billetera_digital",
+        "source": "paymentMethod",
+        "transform": "equals:Billetera digital",
+        "label": "Pago con billetera digital"
+      }
+    ],
+    "derived": [
+      {
+        "name": "importe_vs_promedio",
+        "formula": "importe ÷ promedio_cliente",
+        "purpose": "Mide cuánto se aleja la compra del hábito."
+      },
+      {
+        "name": "horario_nocturno",
+        "formula": "hora ≤ 05:00 o hora ≥ 23:00",
+        "purpose": "Señala actividad fuera del horario habitual."
+      },
+      {
+        "name": "log_distancia",
+        "formula": "log(1 + distancia_km)",
+        "purpose": "Reduce el peso extremo de trayectos muy largos."
+      }
+    ],
+    "excluded": "No se usan ID, fecha, etiqueta ni variables duplicadas para evitar fuga de información o doble conteo."
+  },
+  "thresholds": {
+    "medium": 0.2938,
+    "high": 0.565
+  },
+  "metrics": {
+    "accuracy": 0.8587,
+    "precision": 0.204,
+    "recall": 0.7969,
+    "f1": 0.3248,
+    "prAuc": 0.4235
+  },
+  "confusion": {
+    "tp": 51,
+    "fp": 199,
+    "tn": 1237,
+    "fn": 13
+  },
+  "distribution": {
+    "Bajo": 6417,
+    "Medio": 1948,
+    "Alto": 1635
+  },
+  "model": {
+    "intercept": -1.35467246,
+    "weights": [
+      0.41220658,
+      0.68383449,
+      0.4661814,
+      0.13982999,
+      0.52840612,
+      0.12639069,
+      0.34511239,
+      0.66792988,
+      0.07045414,
+      0.4811034,
+      0.75217209,
+      0.07964256,
+      0.22224878,
+      0.40991245,
+      0.22378197,
+      0.05653479
+    ],
+    "means": [
+      12.17030834,
+      1.96756571,
+      1.76942857,
+      7.08269203,
+      0.44642857,
+      4.34307671,
+      0.29414286,
+      0.16071429,
+      0.69457143,
+      0.34042857,
+      0.15985714,
+      0.15942857,
+      0.16328571,
+      0.15757143,
+      0.33414286,
+      0.33328571
+    ],
+    "scales": [
+      1.04958834,
+      2.67811041,
+      1.92805815,
+      0.41370942,
+      1.06850434,
+      1.2662056,
+      0.45565649,
+      0.36726721,
+      0.46058871,
+      0.47385331,
+      0.36647351,
+      0.36607527,
+      0.36962615,
+      0.36433868,
+      0.47168995,
+      0.47138768
+    ],
+    "topFeatures": [
+      {
+        "name": "pais_riesgo_alto",
+        "label": "País de riesgo alto",
+        "direction": "eleva",
+        "weight": 0.7522
+      },
+      {
+        "name": "importe_vs_promedio",
+        "label": "Importe frente al promedio",
+        "direction": "eleva",
+        "weight": 0.6838
+      },
+      {
+        "name": "dispositivo_nuevo",
+        "label": "Dispositivo no reconocido",
+        "direction": "eleva",
+        "weight": 0.6679
+      },
+      {
+        "name": "intentos_fallidos",
+        "label": "Intentos fallidos",
+        "direction": "eleva",
+        "weight": 0.5284
+      },
+      {
+        "name": "pais_riesgo_medio",
+        "label": "País de riesgo medio",
+        "direction": "eleva",
+        "weight": 0.4811
+      }
+    ]
+  },
+  "samples": [
+    {
+      "id": "TRX-05075",
+      "createdAt": "2026-09-23T10:51:00.000Z",
+      "amount": 2087930,
+      "hour": 10,
+      "country": "Origen no habitual",
+      "countryRisk": "Alto",
+      "merchant": "Viajes",
+      "paymentMethod": "Billetera digital",
+      "deviceTrusted": true,
+      "cardPresent": true,
+      "transactionCount24h": 2,
+      "accountAgeDays": 1041,
+      "failedAttempts": 0,
+      "distanceKm": 72.0,
+      "amountVsAverage": 24.41,
+      "riskScore": 99,
+      "riskLevel": "Alto",
+      "fraudActual": false
+    },
+    {
+      "id": "TRX-06701",
+      "createdAt": "2026-09-09T03:52:00.000Z",
+      "amount": 1528789,
+      "hour": 3,
+      "country": "Origen no habitual",
+      "countryRisk": "Alto",
+      "merchant": "Joyería",
+      "paymentMethod": "Billetera digital",
+      "deviceTrusted": true,
+      "cardPresent": false,
+      "transactionCount24h": 2,
+      "accountAgeDays": 1236,
+      "failedAttempts": 4,
+      "distanceKm": 130.0,
+      "amountVsAverage": 11.02,
+      "riskScore": 99,
+      "riskLevel": "Alto",
+      "fraudActual": true
+    },
+    {
+      "id": "TRX-07464",
+      "createdAt": "2026-09-05T14:29:00.000Z",
+      "amount": 1553386,
+      "hour": 14,
+      "country": "México",
+      "countryRisk": "Medio",
+      "merchant": "Viajes",
+      "paymentMethod": "Tarjeta física",
+      "deviceTrusted": false,
+      "cardPresent": false,
+      "transactionCount24h": 8,
+      "accountAgeDays": 493,
+      "failedAttempts": 3,
+      "distanceKm": 3.0,
+      "amountVsAverage": 9.68,
+      "riskScore": 99,
+      "riskLevel": "Alto",
+      "fraudActual": true
+    },
+    {
+      "id": "TRX-03002",
+      "createdAt": "2026-09-14T17:14:00.000Z",
+      "amount": 390915,
+      "hour": 17,
+      "country": "Brasil",
+      "countryRisk": "Medio",
+      "merchant": "Viajes",
+      "paymentMethod": "Tarjeta virtual",
+      "deviceTrusted": true,
+      "cardPresent": false,
+      "transactionCount24h": 4,
+      "accountAgeDays": 1734,
+      "failedAttempts": 0,
+      "distanceKm": 140.0,
+      "amountVsAverage": 3.5,
+      "riskScore": 56,
+      "riskLevel": "Medio",
+      "fraudActual": false
+    },
+    {
+      "id": "TRX-05083",
+      "createdAt": "2026-09-18T02:24:00.000Z",
+      "amount": 87948,
+      "hour": 2,
+      "country": "Origen no habitual",
+      "countryRisk": "Alto",
+      "merchant": "Viajes",
+      "paymentMethod": "Tarjeta virtual",
+      "deviceTrusted": true,
+      "cardPresent": false,
+      "transactionCount24h": 2,
+      "accountAgeDays": 1684,
+      "failedAttempts": 0,
+      "distanceKm": 51.0,
+      "amountVsAverage": 1.07,
+      "riskScore": 56,
+      "riskLevel": "Medio",
+      "fraudActual": false
+    },
+    {
+      "id": "TRX-05152",
+      "createdAt": "2026-09-09T11:04:00.000Z",
+      "amount": 493068,
+      "hour": 11,
+      "country": "Brasil",
+      "countryRisk": "Medio",
+      "merchant": "Viajes",
+      "paymentMethod": "Tarjeta física",
+      "deviceTrusted": true,
+      "cardPresent": true,
+      "transactionCount24h": 0,
+      "accountAgeDays": 1454,
+      "failedAttempts": 4,
+      "distanceKm": 62.0,
+      "amountVsAverage": 2.14,
+      "riskScore": 56,
+      "riskLevel": "Medio",
+      "fraudActual": false
+    },
+    {
+      "id": "TRX-06068",
+      "createdAt": "2026-09-22T07:32:00.000Z",
+      "amount": 188587,
+      "hour": 7,
+      "country": "Origen no habitual",
+      "countryRisk": "Alto",
+      "merchant": "Tecnología",
+      "paymentMethod": "Tarjeta virtual",
+      "deviceTrusted": true,
+      "cardPresent": false,
+      "transactionCount24h": 1,
+      "accountAgeDays": 1562,
+      "failedAttempts": 0,
+      "distanceKm": 127.0,
+      "amountVsAverage": 0.61,
+      "riskScore": 29,
+      "riskLevel": "Bajo",
+      "fraudActual": false
+    },
+    {
+      "id": "TRX-08924",
+      "createdAt": "2026-09-19T19:05:00.000Z",
+      "amount": 724752,
+      "hour": 19,
+      "country": "Brasil",
+      "countryRisk": "Medio",
+      "merchant": "Gaming",
+      "paymentMethod": "Tarjeta física",
+      "deviceTrusted": true,
+      "cardPresent": false,
+      "transactionCount24h": 3,
+      "accountAgeDays": 959,
+      "failedAttempts": 0,
+      "distanceKm": 1026.0,
+      "amountVsAverage": 3.24,
+      "riskScore": 29,
+      "riskLevel": "Bajo",
+      "fraudActual": false
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-24T20:56:00-05:00",
+  "title": "Design System: GoldGuard",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Carbón de consola", "canonical": "#1B1814", "tonalRamp": ["#0D0B09", "#1B1814", "#282219", "#332B20", "#514638", "#796B57", "#AA9B82", "#E8DDB4"] },
+      "surface": { "role": "neutral", "displayName": "Marrón de superficie", "canonical": "#282219", "tonalRamp": ["#12100C", "#282219", "#3C3327", "#584B3A", "#786957", "#A3937C", "#CEC2AE", "#F5F0E6"] },
+      "surface-raised": { "role": "neutral", "displayName": "Marrón elevado", "canonical": "#332B20", "tonalRamp": ["#18140F", "#332B20", "#493D2E", "#655746", "#877765", "#AE9C87", "#D4C6B5", "#F6F0E8"] },
+      "slate": { "role": "neutral", "displayName": "Pizarra autorizada", "canonical": "#767F9E", "tonalRamp": ["#161923", "#2D3145", "#464C69", "#606887", "#767F9E", "#9AA3BE", "#C4CADB", "#EAECF3"] },
+      "caramel": { "role": "primary", "displayName": "Caramelo de activación", "canonical": "#DAA464", "tonalRamp": ["#301C0B", "#613916", "#925A27", "#BE7F42", "#DAA464", "#E7BE8B", "#F2D9B8", "#FBF1E4"] },
+      "gold": { "role": "secondary", "displayName": "Oro de lectura", "canonical": "#DEC384", "tonalRamp": ["#30270F", "#62501E", "#957A33", "#C0A85B", "#DEC384", "#E9D4A7", "#F3E4C7", "#FBF5E8"] },
+      "cream": { "role": "neutral", "displayName": "Pergamino claro", "canonical": "#E8DDB4", "tonalRamp": ["#342F21", "#685F43", "#9B906A", "#C8BD93", "#E8DDB4", "#EFE7CB", "#F6F1DF", "#FCFAF3"] },
+      "risk-medium": { "role": "tertiary", "displayName": "Rojo de revisión", "canonical": "#B96F62", "tonalRamp": ["#301413", "#602A27", "#8F4841", "#AD6357", "#B96F62", "#D19489", "#E7BDB6", "#F8E8E5"] },
+      "risk-high": { "role": "tertiary", "displayName": "Rojo de prioridad", "canonical": "#B64E45", "tonalRamp": ["#300E0D", "#60201D", "#8C342E", "#AA473F", "#B64E45", "#CF7A71", "#E8B5AE", "#F9E6E3"] }
+    },
+    "typographyMeta": {
+      "display-landing": { "displayName": "Titular de portada", "purpose": "Titular de la historia de marca y entrada a la demostración." },
+      "display-simulator": { "displayName": "Titular de simulador", "purpose": "Introducir el flujo de evaluación de riesgo." },
+      "body": { "displayName": "Lectura explicativa", "purpose": "Contexto y descripciones que requieren lectura continua." },
+      "label": { "displayName": "Etiqueta de consola", "purpose": "Estados, fuentes, campos, métricas y microcopy." }
+    },
+    "shadows": [
+      { "name": "brand-offset", "value": "3px 3px 0 #DAA464", "purpose": "Sellos de marca y pequeñas piezas de identidad." },
+      { "name": "action-offset", "value": "4px 4px 0 #767F9E", "purpose": "Botones y controles que se pueden presionar." },
+      { "name": "card-offset", "value": "5px 5px 0 #0D0B09", "purpose": "Métricas, paneles, tablas y evidencia." },
+      { "name": "hero-offset", "value": "8px 8px 0 #0D0B09", "purpose": "Hero y bloques de jerarquía principal." },
+      { "name": "calculator-offset", "value": "9px 9px 0 #0D0B09", "purpose": "Calculadora y banners estructurales." }
+    ],
+    "motion": [
+      { "name": "pixel-press", "value": "transform .12s steps(2), box-shadow .12s steps(2)", "purpose": "Respuesta breve de los botones pixel." },
+      { "name": "card-state", "value": "border-color .12s steps(2), box-shadow .12s steps(2), background .12s steps(2)", "purpose": "Cambio de foco de cartas de evidencia sin desplazarlas." },
+      { "name": "field-focus", "value": "border .15s ease, box-shadow .15s ease", "purpose": "Respuesta de campos de formulario." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "820px" },
+      { "name": "mobile", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "action-primary",
+      "description": "Acción principal para iniciar una evaluación o calcular el nivel de riesgo.",
+      "html": "<button class='ds-action'>EVALUAR TRANSACCIÓN <span>→</span></button>",
+      "css": ".ds-action{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid #DAA464;border-radius:8px;padding:12px 17px;color:#1B1814;background:#DAA464;box-shadow:4px 4px 0 #767F9E;font-family:Courier New,ui-monospace,monospace;font-size:12px;font-weight:800;cursor:pointer}.ds-action:hover{background:#DEC384;transform:translateY(-1px)}.ds-action:focus-visible{outline:2px solid #DAA464;outline-offset:3px}.ds-action:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #767F9E}"
+    },
+    {
+      "name": "Inverted Pixel Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción secundaria para abrir evidencia o volver a la calculadora.",
+      "html": "<button class='ds-pixel-secondary'>VER EVIDENCIA <span>→</span></button>",
+      "css": ".ds-pixel-secondary{display:inline-flex;align-items:center;gap:9px;border:2px solid #DAA464;padding:10px 13px;color:#DEC384;background:transparent;box-shadow:4px 4px 0 #767F9E;font-family:Courier New,ui-monospace,monospace;font-size:10px;font-weight:900}.ds-pixel-secondary:hover{color:#E8DDB4;background:#332B20}.ds-pixel-secondary:focus-visible{outline:2px solid #DAA464;outline-offset:3px}.ds-pixel-secondary:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #767F9E}"
+    },
+    {
+      "name": "Brand Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Barra compacta de marca, enlaces de sección y estado de demostración.",
+      "html": "<nav class='ds-nav'><span class='ds-mark'>G</span><strong>GOLD//GUARD</strong><a href='#'>PANEL</a><a href='#'>EVIDENCIA</a><span class='ds-pill'>MODO DEMO</span></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:14px;border-bottom:1px solid #767F9E;padding:12px 0;color:#E8DDB4;font-family:Courier New,ui-monospace,monospace;font-size:10px;font-weight:800}.ds-nav a{color:#DEC384;text-decoration:none}.ds-nav a:hover{color:#DAA464}.ds-nav a:focus-visible{outline:2px solid #DAA464;outline-offset:3px}.ds-mark{display:grid;width:27px;height:27px;place-items:center;color:#1B1814;background:#DEC384;box-shadow:3px 3px 0 #DAA464}.ds-pill{margin-left:auto;border:1px solid #767F9E;border-radius:99px;padding:5px 7px;color:#DEC384;background:#282219}"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "card",
+      "refersTo": "pixel-card",
+      "description": "Resumen estático de una métrica del conjunto o del modelo.",
+      "html": "<article class='ds-metric'><span class='ds-icon'>▦</span><div><small>TRANSACCIONES</small><strong>10.000</strong><p>15 variables analíticas</p></div></article>",
+      "css": ".ds-metric{display:flex;gap:12px;min-height:116px;border:2px solid #767F9E;padding:17px;color:#E8DDB4;background:#282219;box-shadow:5px 5px 0 #0D0B09;font-family:Courier New,ui-monospace,monospace}.ds-icon{display:grid;width:34px;height:34px;place-items:center;color:#1B1814;background:#DEC384}.ds-metric small{display:block;color:#DEC384;font-size:9px;font-weight:800}.ds-metric strong{display:block;margin-top:4px;color:#E8DDB4;font-size:22px}.ds-metric p{margin:7px 0 0;color:#DEC384;font-size:9px;line-height:1.45}"
+    },
+    {
+      "name": "Risk Badge",
+      "kind": "chip",
+      "refersTo": "risk-badge-low",
+      "description": "Etiqueta semántica reutilizable para bajo, medio y alto riesgo.",
+      "html": "<div class='ds-badges'><span class='ds-badge ds-low'>BAJO</span><span class='ds-badge ds-medium'>MEDIO</span><span class='ds-badge ds-high'>ALTO</span></div>",
+      "css": ".ds-badges{display:flex;gap:8px;font-family:Courier New,ui-monospace,monospace}.ds-badge{min-width:48px;border:1px solid currentColor;padding:3px 7px;text-align:center;font-size:10px;font-weight:800}.ds-low{color:#1B1814;background:#E8DDB4}.ds-medium{color:#E8DDB4;background:#B96F62}.ds-high{color:#E8DDB4;background:#B64E45}"
+    },
+    {
+      "name": "Calculator Field and Toggle",
+      "kind": "input",
+      "refersTo": "calculator-field",
+      "description": "Campo rectangular y control binario usados en la calculadora de transacciones.",
+      "html": "<label class='ds-field'>IMPORTE (COP)<input value='245000' /><span class='ds-toggle'><input type='checkbox' checked /><i></i> DISPOSITIVO RECONOCIDO</span></label>",
+      "css": ".ds-field{display:grid;gap:8px;color:#1B1814;font-family:Courier New,ui-monospace,monospace;font-size:10px;font-weight:800}.ds-field>input{height:39px;border:2px solid #DAA464;padding:0 10px;color:#1B1814;background:#E8DDB4;font:inherit}.ds-field>input:focus{outline:none;border-color:#767F9E;box-shadow:3px 3px 0 #767F9E}.ds-field>input:focus-visible{outline:2px solid #DAA464;outline-offset:3px}.ds-toggle{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:9px}.ds-toggle input{position:absolute;opacity:0}.ds-toggle i{width:18px;height:18px;border:2px solid #DAA464;background:#DAA464;box-shadow:inset 0 0 0 3px #E8DDB4}.ds-toggle input:not(:checked)+i{border-color:#767F9E;background:#E8DDB4;box-shadow:none}"
+    },
+    {
+      "name": "Risk Assessment Card",
+      "kind": "custom",
+      "refersTo": "risk-assessment",
+      "description": "Resultado explicable con prioridad visual para nivel, puntuación y razones.",
+      "html": "<article class='ds-assessment'><span class='ds-label'>PASO 02 · RESULTADO</span><div class='ds-score'><div><small>NIVEL ESTIMADO</small><strong>RIESGO ALTO</strong></div><b>82</b></div><p><i></i> Dispositivo no reconocido</p><p><i></i> Importe fuera del patrón</p><footer>Requiere verificación manual <span>→</span></footer></article>",
+      "css": ".ds-assessment{border-left:3px solid #B64E45;padding:22px;color:#E8DDB4;background:#282219;font-family:Courier New,ui-monospace,monospace;box-shadow:5px 5px 0 #0D0B09}.ds-label,.ds-score small{display:block;color:#DEC384;font-size:9px;font-weight:800;letter-spacing:.7px}.ds-score{display:flex;align-items:center;justify-content:space-between;margin:15px 0}.ds-score strong{display:block;margin-top:5px;font-size:20px}.ds-score b{display:grid;width:48px;height:48px;place-items:center;border:4px solid #B64E45;color:#E8DDB4;font-size:16px}.ds-assessment p{display:flex;gap:8px;margin:8px 0;color:#DEC384;font-size:10px}.ds-assessment p i{width:6px;height:6px;margin-top:3px;background:#B64E45}.ds-assessment footer{display:flex;justify-content:space-between;margin:16px -22px -22px;padding:13px 22px;color:#E8DDB4;background:#1B1814;font-size:10px;font-weight:800}"
+    },
+    {
+      "name": "Evidence Source Card",
+      "kind": "card",
+      "refersTo": "evidence-source-card",
+      "description": "Tarjeta contenida que traduce una señal externa a una variable medible del modelo.",
+      "html": "<article class='ds-source'><header><span>SEÑAL 01</span><b>▪▪▪</b></header><h3>IMPORTE INUSUALMENTE ALTO</h3><p>Una compra grande frente al patrón habitual merece elevar la revisión.</p><div><small>VARIABLE DEL MODELO</small><code>amount_cop · amount_vs_average</code></div><a href='#'>VER FUENTE ↗</a></article>",
+      "css": ".ds-source{display:flex;min-height:252px;flex-direction:column;border:2px solid #767F9E;padding:16px;color:#E8DDB4;background:#332B20;box-shadow:4px 4px 0 #0D0B09;font-family:Courier New,ui-monospace,monospace}.ds-source:hover,.ds-source:focus-within{border-color:#DAA464}.ds-source header{display:flex;justify-content:space-between;border-bottom:1px solid #767F9E;padding-bottom:9px;color:#DAA464;font-size:8px;font-weight:900}.ds-source h3{margin:13px 0 8px;font-size:13px;line-height:1.15}.ds-source p{margin:0;color:#DEC384;font-size:9px;line-height:1.45}.ds-source div{margin-top:12px;border:1px solid #767F9E;padding:8px;background:#1B1814}.ds-source small{display:block;margin-bottom:5px;color:#DAA464;font-size:8px;font-weight:900}.ds-source code{color:#E8DDB4;font-size:8px;overflow-wrap:anywhere}.ds-source a{margin-top:auto;border-top:1px solid #767F9E;padding-top:12px;color:#DAA464;font-size:8px;font-weight:900}.ds-source a:focus-visible{outline:2px solid #DAA464;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Consola forense pixel",
+    "overview": "GoldGuard convierte la evaluación de un modelo de prueba en una consola de investigación: una superficie oscura, órdenes legibles, tarjetas rectangulares y datos que se sienten manipulables. El acabado es lúdico tipo arcade, pero la lectura sigue siendo académica: cada color, señal y bloque de evidencia debe ayudar al docente a verificar de dónde viene una decisión.\n\nLa identidad combina cuadrículas tenues, microtipografía monoespaciada, oro apagado y sombras de píxel desplazadas. No pretende parecer una banca de producción ni un dashboard corporativo genérico; presenta una demostración didáctica, trazable y deliberadamente explícita sobre sus límites.",
+    "keyCharacteristics": [
+      "Superficies oscuras cálidas con cuadrícula de fondo tenue.",
+      "Tipografía de terminal para jerarquía, labels y cifras; sans serif solo donde mejora la lectura larga.",
+      "Contenedores rectangulares, bordes visibles y sombras duras sin desenfoque.",
+      "Estados de riesgo semánticos: crema para bajo, rojo apagado para medio y rojo intenso para alto.",
+      "Interacción breve y discreta, como respuesta de un control pixelado, nunca como una animación flotante."
+    ],
+    "rules": [
+      { "name": "The Red Means Risk Rule", "body": "Los dos rojos no decoran: aparecen solo cuando el sistema comunica riesgo medio, alto, fraude, prioridad o una alerta vinculada a la evaluación.", "section": "colors" },
+      { "name": "The One Cold Neutral Rule", "body": "No se introducen azules ni verdes nuevos. La pizarra autorizada es el único gris frío y sirve para estructura, no para competir con el oro.", "section": "colors" },
+      { "name": "The Terminal First Rule", "body": "Cifras, estados, etiquetas y titulares usan la voz monoespaciada. La sans serif se reserva para pasajes explicativos que necesitan una lectura más larga.", "section": "typography" },
+      { "name": "The Hard Offset Rule", "body": "Todas las sombras son rectas, con desplazamiento visible y sin blur. Una sombra suave rompería el lenguaje pixel y la lectura de capas.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do mantener la paleta acotada y usar el caramelo para acciones, foco y ornamentación funcional.",
+      "Do explicar el riesgo junto a sus señales y la procedencia de la evidencia.",
+      "Do usar bordes visibles, sombras duras y composiciones contenidas para que la consola se sienta pixelada.",
+      "Do mantener las cartas de evidencia en grids de 3 → 2 → 1 columnas según el ancho disponible.",
+      "Do conservar el aviso de que el modelo y los datos actuales son demostrativos mientras no exista validación independiente."
+    ],
+    "donts": [
+      "Don't introducir verde o azul como acento; la pizarra existente no debe convertirse en un color protagonista.",
+      "Don't usar rojo como decoración, éxito o acción primaria.",
+      "Don't suavizar sombras, convertir las tarjetas en vidrio ni redondear por defecto los componentes de datos.",
+      "Don't mover o rotar tarjetas de fuente al hover de modo que desborden la ventana.",
+      "Don't presentar una simulación sintética como una validación final del modelo."
+    ]
+  }
+}
